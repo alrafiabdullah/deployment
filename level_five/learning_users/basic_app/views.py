@@ -13,7 +13,7 @@ def index(request):
 
 @login_required
 def special(request):
-    return HttpResponse("You are logged in, Nice!")
+    return render(request, 'first_app/loggedin.html')
 
 @login_required
 def user_logout(request):
@@ -59,7 +59,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('logged_in'))
             else:
                 return HttpResponse("Account Not Active")
         else:
